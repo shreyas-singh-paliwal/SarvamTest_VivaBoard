@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VivaBoard — Voice to Whiteboard</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2d;--panel2:#18233b;--line:#293652;--text:#edf2ff;--muted:#9caac6;--accent:#9ee6d0;--accent2:#b5a4ff;--warn:#ffcf8a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#1c2a48 0,transparent 42%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1180px;margin:auto;padding:28px 20px 56px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#101629;font-weight:900;font-size:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent)}h1{font-size:clamp(28px,4vw,43px);line-height:1.08;letter-spacing:-.04em;margin:0 0 10px}.sub{color:var(--muted);max-width:720px;margin:0}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 11px;color:var(--muted);font-size:12px;white-space:nowrap}
+.layout{display:grid;grid-template-columns: .9fr 1.1fr;gap:18px;margin-top:26px}.panel{background:linear-gradient(180deg,rgba(22,32,54,.96),rgba(16,24,42,.98));border:1px solid var(--line);border-radius:20px;padding:20px;min-width:0;box-shadow:0 14px 40px #0002}.panel h2{font-size:17px;margin:0 0 4px}.hint{font-size:13px;color:var(--muted);margin:0 0 16px}.question{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0}.question label,.label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}.question p{margin:0;font-size:16px}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.btn{border:0;border-radius:11px;padding:11px 14px;font-weight:700;cursor:pointer;background:var(--accent);color:#10201e}.btn.secondary{background:#263451;color:var(--text);border:1px solid #354462}.btn:disabled{opacity:.45;cursor:not-allowed}.btn.record{background:#ff8f9b;color:#35121a}.status{font-size:13px;color:var(--muted);min-height:20px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-right:7px}.dot.live{background:#ff788b;box-shadow:0 0 0 5px #ff788b20}.audio{width:100%;margin-top:12px}textarea{width:100%;min-height:175px;resize:vertical;background:#0b1325;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:13px;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;outline:none}textarea:focus{border-color:var(--accent2)}.whiteboard{min-height:460px}.empty{border:1px dashed #34425e;border-radius:16px;padding:34px 20px;text-align:center;color:var(--muted);margin-top:16px}.empty .symbol{font-size:34px;margin-bottom:8px}.wb-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}.topic{font-size:22px;font-weight:800;letter-spacing:-.02em}.tag{font-size:11px;border-radius:7px;background:#253650;color:var(--accent);padding:5px 8px}.section{margin:17px 0}.section h3{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 9px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{background:#202d47;border:1px solid #33415e;border-radius:9px;padding:7px 9px;font-size:13px}.step{border-left:2px solid var(--accent2);padding:2px 0 3px 12px;margin:10px 0}.step strong{display:block;font-size:14px}.step p{margin:3px 0 0;color:#c3cde0;font-size:13px}.math{font-family:Georgia,serif;font-size:21px;text-align:center;padding:15px;background:#0b1325;border:1px solid var(--line);border-radius:12px;overflow-wrap:anywhere}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid var(--line);padding:7px 10px;text-align:center}th{background:#202d47;color:var(--accent)}.note{background:#332b20;border:1px solid #665136;color:#ffdda8;padding:11px 12px;border-radius:10px;font-size:13px;margin:8px 0}.follow{padding:10px 12px;border-radius:10px;background:#202d47;margin:7px 0;font-size:13px}.footer{color:#8290ac;font-size:12px;margin-top:18px}.loader{display:none;margin-left:5px}.loader.show{display:inline}.wide{grid-column:1/-1}@media(max-width:800px){.layout{grid-template-columns:1fr}.whiteboard{min-height:300px}.top{align-items:flex-start}.pill{display:none}main{padding:20px 13px 40px}}
+</style>
+</head>
+<body><main>
+<header class="top"><div class="brand"><div class="logo">V</div><div><div class="eyebrow">Digital Circuits · Viva assistant</div><div style="font-size:18px;font-weight:800">VivaBoard</div></div></div><div class="pill">PROTOTYPE · SARVAM AI</div></header>
+<h1>Think aloud.<br><span style="color:var(--accent)">See it take shape.</span></h1>
+<p class="sub">Turn a student's spoken reasoning into an editable transcript, structured concepts, Boolean expressions, and examiner prompts. AI suggestions are reviewable — not automatic grades.</p>
+<div class="layout">
+<section class="panel">
+<h2>01 / Capture an answer</h2><p class="hint">Record a short explanation or paste a transcript.</p>
+<div class="question"><label>Viva question · example</label><p>Minimize <b>F(A,B,C) = Σm(1,3,5,7)</b> and explain your reasoning.</p></div>
+<div class="controls"><button id="recordBtn" class="btn record">● Record answer</button><button id="stopBtn" class="btn secondary" disabled>Stop</button></div>
+<div id="recordStatus" class="status"><span class="dot"></span>Ready when you are. Keep the first demo under 30 seconds.</div>
+<audio id="playback" class="audio" controls hidden></audio>
+<div class="controls"><button id="transcribeBtn" class="btn" disabled>Transcribe with Sarvam</button><button id="sampleBtn" class="btn secondary">Load sample</button></div>
+<label class="label" for="transcript">Transcript · editable before analysis</label>
+<textarea id="transcript" placeholder="Your transcript will appear here. You can also type/paste a sample answer…"></textarea>
+<div class="controls"><button id="buildBtn" class="btn">Build whiteboard →</button><span id="apiStatus" class="status"></span></div>
+</section>
+<section class="panel whiteboard">
+<div class="wb-head"><div><h2>02 / Live whiteboard</h2><p class="hint" style="margin:4px 0 0">Structured output from the student's explanation</p></div><span class="tag">EDITABLE FLOW</span></div>
+<div id="board"><div class="empty"><div class="symbol">⌁</div><b>Your whiteboard is waiting</b><p>Record or load the sample, then build the whiteboard.</p></div></div>
+</section>
+<section class="panel wide">
+<h2>03 / Examiner review</h2><p class="hint">Use these prompts to guide a follow-up. This prototype does not assign a score or formally verify math.</p>
+<div id="examiner"><div class="empty" style="padding:20px">Follow-up questions and uncertainty flags will appear here.</div></div>
+</section>
+</div>
+<div class="footer">Prototype note: audio is sent to Sarvam AI for transcription. Confirm the transcript and mathematical notation before using it for evaluation. Do not use for real student grading without consent, privacy controls, and formal verification.</div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let recorder, chunks=[], audioBlob=null, stream=null;
+function status(msg, live=false){$('recordStatus').innerHTML=`<span class="dot ${live?'live':''}"></span>${msg}`}
+$('recordBtn').onclick = async()=>{
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({audio:true}); chunks=[];
+  const mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':'audio/webm';
+  recorder=new MediaRecorder(stream,{mimeType:mime});
+  recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+  recorder.onstop=()=>{audioBlob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});$('playback').src=URL.createObjectURL(audioBlob);$('playback').hidden=false;$('transcribeBtn').disabled=false;stream.getTracks().forEach(t=>t.stop());status('Recording ready. Transcribe it with Sarvam.')};
+  recorder.start();$('recordBtn').disabled=true;$('stopBtn').disabled=false;status('Recording… explain your steps clearly.',true);
+ }catch(e){status('Microphone unavailable: '+e.message)}
+};
+$('stopBtn').onclick=()=>{if(recorder&&recorder.state!=='inactive')recorder.stop();$('recordBtn').disabled=false;$('stopBtn').disabled=true};
+$('transcribeBtn').onclick=async()=>{
+ if(!audioBlob)return; $('transcribeBtn').disabled=true;$('apiStatus').textContent='Transcribing…';
+ try{const fd=new FormData();fd.append('audio',audioBlob,'answer.webm');const r=await fetch('/api/transcribe',{method:'POST',body:fd});const j=await r.json();if(!r.ok)throw Error(j.error||'Transcription failed');$('transcript').value=j.transcript||'';$('apiStatus').textContent='Transcribed ✓';}
+ catch(e){$('apiStatus').textContent=e.message}
+ finally{$('transcribeBtn').disabled=false}
+};
+$('sampleBtn').onclick=()=>{$('transcript').value='The minterms are one, three, five and seven. In binary, these are zero zero one, zero one one, one zero one, and one one one. The last bit is always one, so the simplified expression is F equals C.';$('apiStatus').textContent='Sample loaded — no API call yet.'};
+$('buildBtn').onclick=async()=>{
+ const transcript=$('transcript').value.trim();if(!transcript){$('apiStatus').textContent='Add a transcript first.';return}
+ $('buildBtn').disabled=true;$('apiStatus').textContent='Structuring with Sarvam…';
+ try{const r=await fetch('/api/structure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transcript})});const data=await r.json();if(!r.ok)throw Error(data.error||'Could not build whiteboard');render(data);$('apiStatus').textContent='Whiteboard generated ✓'}
+ catch(e){$('apiStatus').textContent=e.message;renderFallback(transcript)}
+ finally{$('buildBtn').disabled=false}
+};
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(d){
+ const expr=(d.expressions||[]);let html=`<div class="wb-head"><div class="topic">${esc(d.topic||'Viva notes')}</div><span class="tag">AI DRAFT</span></div>`;
+ html+=`<div class="section"><h3>Cleaned transcript</h3><p style="color:#c3cde0;margin:0">${esc(d.cleaned_transcript||'')}</p></div>`;
+ if(d.concepts?.length)html+=`<div class="section"><h3>Concepts identified</h3><div class="chips">${d.concepts.map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div></div>`;
+ if(expr.length)html+=`<div class="section"><h3>Expressions</h3>${expr.map(x=>`<div class="math">${esc(x.latex||x.spoken_form||'')}</div><div style="margin-top:5px;color:var(--muted);font-size:12px">${esc(x.spoken_form||'')} · confidence: ${esc(x.confidence||'unknown')} ${x.needs_review?'· needs review':''}</div>`).join('')}</div>`;
+ if(d.steps?.length)html+=`<div class="section"><h3>Reasoning steps</h3>${d.steps.map(s=>`<div class="step"><strong>${esc(s.title||'Step')}</strong><p>${esc(s.content||'')} · ${esc(s.status||'')}</p></div>`).join('')}</div>`;
+ const tt=d.truth_table||{};if(tt.rows?.length){const vars=tt.variables||Object.keys(tt.rows[0]);html+=`<div class="section"><h3>Truth table ${tt.needs_review?'· review needed':''}</h3><div class="table-wrap"><table><thead><tr>${vars.map(v=>`<th>${esc(v)}</th>`).join('')}</tr></thead><tbody>${tt.rows.map(row=>`<tr>${vars.map(v=>`<td>${esc(row[v])}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`}
+ if(d.uncertainties?.length)html+=`<div class="section"><h3>Needs review</h3>${d.uncertainties.map(x=>`<div class="note">⚠ ${esc(x)}</div>`).join('')}</div>`;
+ $('board').innerHTML=html;
+ let exhtml='';
+ if(d.follow_up_questions?.length)exhtml+=`<div class="section"><h3>Suggested viva follow-ups</h3>${d.follow_up_questions.map(q=>`<div class="follow">${esc(q)}</div>`).join('')}</div>`;
+ if(d.examiner_notes?.length)exhtml+=`<div class="section"><h3>Examiner notes · AI-generated, review required</h3>${d.examiner_notes.map(n=>`<div class="follow">${esc(n)}</div>`).join('')}</div>`;
+ $('examiner').innerHTML=exhtml||'<p class="hint">No examiner notes generated.</p>';
+}
+function renderFallback(t){$('board').innerHTML=`<div class="section"><h3>Transcript preview</h3><p>${esc(t)}</p><div class="note">The AI structuring request failed. Your transcript is preserved; check your API key and try again.</div></div>`}
+</script></body></html>
